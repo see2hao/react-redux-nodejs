@@ -8,6 +8,9 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import reducers from './reducer'
 import './config'
 
+import Login from './pages/login/login'
+import Register from './pages/register/register'
+
 const store = createStore(reducers, compose(
     applyMiddleware(thunk),
     window.devToolsExtension?window.devToolsExtension():f=>f
@@ -16,6 +19,10 @@ const store = createStore(reducers, compose(
 ReactDOM.render(
     (<Provider store={store}>
         <BrowserRouter>
+            <div>
+                <Route path="/login" component={Login}></Route>
+                <Route path="/register" component={Register}></Route>
+            </div>
         </BrowserRouter>
     </Provider>),
     document.getElementById('root')

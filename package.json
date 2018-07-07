@@ -103,12 +103,7 @@
           "style": true
         }
       ],
-      [
-        "@babel/plugin-proposal-decorators",
-        {
-          "legacy": true
-        }
-      ]
+      ["transform-decorators-legacy"]
     ]
   },
   "eslintConfig": {
