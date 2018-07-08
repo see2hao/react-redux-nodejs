@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import reducers from './reducer'
 import './config'
 
+import AuthRoute from './components/auth/authRoute'
 import Login from './pages/login/login'
 import Register from './pages/register/register'
 
@@ -20,6 +21,7 @@ ReactDOM.render(
     (<Provider store={store}>
         <BrowserRouter>
             <div>
+                <AuthRoute/>
                 <Route path="/login" component={Login}></Route>
                 <Route path="/register" component={Register}></Route>
             </div>

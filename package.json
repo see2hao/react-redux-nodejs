@@ -99,8 +99,8 @@
       [
         "import",
         {
-          "libraryName": "antd",
-          "style": true
+          "libraryName": "antd-mobile",
+          "style": "css"
         }
       ],
       ["transform-decorators-legacy"]

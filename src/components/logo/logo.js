@@ -1,11 +1,12 @@
 import React from 'react'
 
-import  logoPng from '../logo/logo'
+import  logoPng from './logo.png'
+import './logo.css'
 
 class Logo extends React.Component{
     render(){
         return (
-            <div className="container">
+            <div className="logo-container">
                 <img src={logoPng}/>
             </div>
         )
