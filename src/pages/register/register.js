@@ -7,16 +7,40 @@ import {
     Button,
     Radio,
  } from 'antd-mobile'
+ import {connect} from 'react-redux'
 
+ import register from '../../reducers/user'
 import Logo from '../../components/logo/logo'
 
+@connect(
+    state=>state.userName,
+    {register}
+)
 class Register extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            type: 'genius'
+            type: 'genius',
+              userName: '',
+              password: '',
+              repeatPassword: '',
+              type: 'genius',  
         }
         this.login = this.login.bind(this)
+        this.handlerChange = this.handlerChange.bind(this)
+        this.handlerRegister = this.handlerRegister.bind(this)
+    }
+
+    handlerRegister(){
+        // console.log(this.props.register)
+        // console.log(this.state)
+        this.props.register(this.state)
+    }
+
+    handlerChange(key, value){
+        this.setState({
+         [key]: value,   
+        })
     }
 
     login(){
@@ -31,25 +55,37 @@ class Register extends React.Component{
                 <h2>注册页</h2>
                 <WingBlank>
                     <List>
-                        <WhiteSpace/>
-                        <InputItem>用户名</InputItem>
-                        <WhiteSpace/>
-                        <InputItem>密码</InputItem>
-                        <WhiteSpace/>
-                        <InputItem>确认密码</InputItem>
-                        <WhiteSpace/>
-                        <RadioItem checked={this.state.type == 'genius'}>
+                        {this.props.message?<p className="error-message">{this.props.message}</p>:null}
+                        <InputItem
+                            onChange={value=>this.handlerChange('userName', value)}
+                        >用户名</InputItem>
+                        <InputItem
+                            onChange={value=>this.handlerChange('password', value)}
+                            type="password"
+                        >密码</InputItem>
+                        <InputItem
+                            onChange={value=>this.handlerChange('repeatPassword', value)}
+                            type="password"
+                        >确认密码</InputItem>
+                        <RadioItem 
+                            checked={this.state.type == 'genius'}
+                            onChange={()=>this.handlerChange('type', 'genius')}
+                        >
                             牛人
                         </RadioItem>
-                        <WhiteSpace/>
-                        <RadioItem checked={this.state.type == 'boss'}>
+                        <RadioItem 
+                            checked={this.state.type == 'boss'}
+                            onChange={()=>this.handlerChange('type', 'boss')}
+                        >
                             BOSS
                         </RadioItem>
                     </List>
                     <WhiteSpace/>
-                    <Button type="primary" onClick={this.login}>登陆</Button>
+                    <Button type="primary"
+                        onClick={this.handlerRegister}
+                    >注册</Button>
                     <WhiteSpace/>
-                    <Button type="primary">注册</Button>
+                    <Button type="primary" onClick={this.login}>登陆</Button>
                 </WingBlank>
             </div>
         )  
